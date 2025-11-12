@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Procesar Revisión</h1>
+    
+    <div class="bg-white shadow rounded-lg p-6">
+        <div class="mb-6">
+            <h2 class="text-xl font-semibold mb-4">Detalles del Solicitante</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <p class="font-medium">Nombre:</p>
+                    <p>{{ review.architect.full_name }}</p>
+                </div>
+                <div>
+                    <p class="font-medium">Número de registro:</p>
+                    <p>{{ review.architect.registration_number }}</p>
+                </div>
+            </div>
+        </div>
+
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Estado</label>
+                {{ form.status }}
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Comentarios</label>
+                {{ form.comments }}
+                <p class="mt-1 text-sm text-gray-500">
+                    Proporcione detalles sobre la decisión, especialmente si es un rechazo.
+                </p>
+            </div>
+
+            <div class="flex justify-end space-x-4">
+                <a href="{% url 'review_applications' %}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                    Cancelar
+                </a>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Guardar Revisión
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

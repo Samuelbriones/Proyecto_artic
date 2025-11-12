@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Certificado ARCON</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+        }
+        .certificate {
+            border: 2px solid #000;
+            padding: 40px;
+            text-align: center;
+        }
+        .header {
+            margin-bottom: 40px;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .content {
+            margin: 40px 0;
+            line-height: 1.6;
+        }
+        .footer {
+            margin-top: 60px;
+        }
+        .signature-line {
+            width: 200px;
+            border-top: 1px solid #000;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate">
+        <div class="header">
+            <img src="{% static 'img/arcon-logo.png' %}" alt="ARCON Logo" width="150">
+        </div>
+        
+        <div class="title">
+            CERTIFICADO DE REGISTRO PROFESIONAL
+        </div>
+        
+        <div class="content">
+            <p>Por medio de la presente, se certifica que:</p>
+            <h2>{{ architect.full_name }}</h2>
+            <p>con número de registro {{ architect.registration_number }}</p>
+            <p>graduado de {{ architect.institution }}</p>
+            <p>se encuentra debidamente registrado como Arquitecto Profesional</p>
+            <p>en el Registro Nacional de Arquitectos.</p>
+            <p>Número de Licencia: {{ architect.license_number }}</p>
+            <p>Fecha de Certificación: {{ architect.certification_date|date:"d/m/Y" }}</p>
+        </div>
+        
+        <div class="footer">
+            <div class="signature-line"></div>
+            <p>Director ARCON</p>
+        </div>
+    </div>
+</body>
+</html>

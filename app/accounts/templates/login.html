@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Iniciar sesión - ARCON{% endblock %}
+
+{% block content %}
+  <div class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold mb-4 text-[#004080]">Iniciar sesión</h2>
+    <form method="post" class="space-y-4">
+      {% csrf_token %}
+      <div>
+        <label class="block text-sm text-gray-700">Correo electrónico</label>
+        <input type="email" name="email" required class="mt-1 w-full border rounded px-3 py-2" />
+      </div>
+      <div>
+        <label class="block text-sm text-gray-700">Contraseña</label>
+        <input type="password" name="password" required class="mt-1 w-full border rounded px-3 py-2" />
+      </div>
+      <div class="flex items-center justify-between">
+        <button type="submit" class="bg-[#004080] text-white px-4 py-2 rounded-full">Entrar</button>
+        <a href="{% url 'register' %}" class="text-sm text-gray-600">Crear cuenta</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

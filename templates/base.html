@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>{% block title %}ARCON{% endblock %}</title>
+        {# Tailwind Play CDN for rapid prototyping (suitable para desarrollo) #}
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <style>
+            body { background-color: #f4f6f8; }
+        </style>
+        <script>
+            function toggleMobileSidebar(){
+                const el = document.getElementById('mobileSidebar');
+                if(!el) return;
+                el.classList.toggle('hidden');
+            }
+        </script>
+</head>
+<body class="min-h-screen font-sans text-gray-800">
+
+  {% if messages %}
+    {# This positions messages at the top-right, outside the main flow #}
+    <div class="fixed top-4 right-4 z-50 space-y-2 w-full max-w-sm">
+      {% for message in messages %}
+        <div class="bg-white p-3 rounded-lg shadow-lg border flex items-start space-x-2">
+          <span class="text-sm">{{ message }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if user.is_authenticated %}
+    {# Layout for logged-in users #}
+    <div class="flex">
+      {% include 'partials/sidebar.html' %}
+      <div class="flex-1 md:ml-64">
+        {% include 'partials/header.html' %}
+        <main class="p-6">
+  {% else %}
+    {# Layout for guests (login, register pages) #}
+    <div class="min-h-screen flex items-center justify-center px-4">
+      <div class="w-full max-w-md">
+  {% endif %}
+
+  {% block content %}{% endblock %}
+
+  {% if user.is_authenticated %}
+        </main>
+      </div>
+    </div>
+  {% else %}
+      </div>
+    </div>
+  {% endif %}
+
+</body>
+</html>

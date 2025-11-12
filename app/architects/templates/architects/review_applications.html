@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Revisión de Solicitudes</h1>
+    
+    {% if pending_reviews %}
+        <div class="grid gap-6">
+            {% for review in pending_reviews %}
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4">Solicitud de {{ review.architect.full_name }}</h2>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <p class="font-medium">Número de registro:</p>
+                            <p>{{ review.architect.registration_number }}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Institución:</p>
+                            <p>{{ review.architect.institution }}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Calificación:</p>
+                            <p>{{ review.architect.qualification }}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Año de graduación:</p>
+                            <p>{{ review.architect.graduation_year }}</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p class="font-medium">Documento:</p>
+                        <a href="{{ review.architect.document.url }}" class="text-blue-600 hover:underline" target="_blank">
+                            Ver documento
+                        </a>
+                    </div>
+                    <div class="flex justify-end">
+                        <a href="{% url 'process_review' review.id %}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                            Revisar solicitud
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-gray-600">No hay solicitudes pendientes de revisión.</p>
+    {% endif %}
+</div>
+{% endblock %}

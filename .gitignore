@@ -1,0 +1,19 @@
+.venv
+venv 
+__pycache__/
+*.pyc
+.env
+.DS_Store
+.idea/
+.vscode/
+*.log
+node_modules/
+dist/
+build/
+
+# Ignore database files
+*.sqlte3
+*.db
+# Ignore coverage reports
+
+.coverage

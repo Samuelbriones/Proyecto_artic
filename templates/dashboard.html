@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - ARCON{% endblock %}
+
+{% block content %}
+    <div class="space-y-6">
+        <div class="flex items-center justify-between">
+            <h1 class="text-2xl font-semibold text-[#004080]">APPLICATION REVIEW</h1>
+            {% if architect and architect.status == 'approved' %}
+                <a href="{% url 'payments:list' %}" class="bg-green-600 text-white px-4 py-2 rounded-full">Proceder al Pago</a>
+            {% endif %}
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-white rounded-lg shadow p-4 flex flex-col items-start">
+                <div class="text-sm text-gray-500">Pending Evaluation</div>
+                <div class="mt-2 text-xl font-bold text-yellow-600">
+                  {% if architect %}{{ architect.status }}{% else %}No Application{% endif %}
+                </div>
+                {% if not architect %}
+                    <a href="{% url 'architects:architect_register' %}" class="mt-4 bg-blue-600 text-white px-3 py-1 rounded-full">Complete your registration</a>
+                {% endif %}
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-4">
+                <div class="text-sm text-gray-500">Queried</div>
+                <div class="mt-2 text-xl font-bold text-red-600">0</div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-4">
+                <div class="text-sm text-gray-500">Approved</div>
+                <div class="mt-2 text-xl font-bold text-green-600">
+                  {% if architect and architect.status == 'approved' %}1{% else %}0{% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-4">
+            <h2 class="text-lg font-medium text-[#004080]">Overview</h2>
+            <p class="text-sm text-gray-600 mt-2">Resumen rápido de tu solicitud y acciones disponibles.</p>
+            <div class="mt-4">
+                {% if architect %}
+                    <div class="text-sm">Nombre: <strong>{{ architect.full_name }}</strong></div>
+                    <div class="text-sm">Estado: <strong>{{ architect.status }}</strong></div>
+                    <div class="mt-3">
+                        <a href="{% url 'architects:architect_edit' %}" class="bg-blue-600 text-white px-3 py-1 rounded-full">Editar datos</a>
+                    </div>
+                {% else %}
+                    <div class="text-sm">No has iniciado tu solicitud.</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white rounded-lg shadow p-4">
+                <h3 class="text-[#004080] font-semibold">Upcoming Events</h3>
+                <ul class="mt-3 text-sm text-gray-600">
+                    <li>No upcoming events</li>
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-4">
+                <h3 class="text-[#004080] font-semibold">Upcoming Exams</h3>
+                <ul class="mt-3 text-sm text-gray-600">
+                    <li>No upcoming exams</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

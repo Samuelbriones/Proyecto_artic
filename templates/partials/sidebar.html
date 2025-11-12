@@ -1,0 +1,83 @@
+{# Sidebar lateral azul con menú vertical - reusable partial #}
+<aside id="sidebar" class="hidden md:block w-64 bg-[#004080] text-white h-screen fixed">
+  <div class="p-6 flex items-center space-x-3">
+    <div class="w-10 h-10 bg-white rounded flex items-center justify-center text-[#004080] font-bold">AR</div>
+    <div>
+      <div class="text-lg font-semibold">ARCON</div>
+      <div class="text-sm opacity-80">Architect Registration</div>
+    </div>
+  </div>
+  <nav class="mt-6 px-2">
+    <a href="{% url 'dashboard' %}" class="block px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/dashboard/' %}bg-white/10{% endif %}">
+      Dashboard
+    </a>
+    
+    <a href="{% url 'architects:architect_register' %}" class="block px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/architects/register/' %}bg-white/10{% endif %}">
+      Registro de Arquitecto
+    </a>
+
+    {% if request.user.architect %}
+    <a href="{% url 'architects:architect_edit' %}" class="block px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/architects/edit/' %}bg-white/10{% endif %}">
+      Editar Perfil
+    </a>
+
+    <a href="{% url 'notifications:list' %}" class="block px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/notifications/' %}bg-white/10{% endif %}">
+      Notificaciones
+      {% if unread_notifications_count %}
+        <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full ml-2">{{ unread_notifications_count }}</span>
+      {% endif %}
+    </a>
+
+    {% if request.user.architect.status == 'pending_payment' and pending_payment %}
+    <a href="{% url 'payments:process' pending_payment.id %}" 
+       class="relative block px-4 py-2 rounded text-yellow-300 hover:bg-yellow-900/50 {% if request.path == '/payments/' %}bg-yellow-900/50{% endif %}">
+      <div class="flex items-center">
+        <span class="flex-grow">Realizar Pago Pendiente</span>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+          ${{ pending_payment.amount }}
+        </span>
+      </div>
+      <span class="absolute -left-0.5 inset-y-0 w-1 bg-yellow-400 animate-pulse"></span>
+    </a>
+    {% else %}
+    <a href="{% url 'payments:list' %}" 
+       class="block px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/payments/' %}bg-white/10{% endif %}">
+      Pagos
+      {% if request.user.architect.status == 'pending_payment' %}
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 ml-2">
+        Pendiente
+      </span>
+      {% endif %}
+    </a>
+    {% endif %}
+
+    {% if request.user.architect.status == 'certified' %}
+    <a href="{% url 'architects:generate_certificate' %}" class="block px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/architects/certificate/' %}bg-white/10{% endif %}">
+      Descargar Certificado
+    </a>
+    {% endif %}
+    {% endif %}
+  </nav>
+</aside>
+
+{# Mobile sidebar (overlay) - hidden by default, toggled via header button #}
+<div id="mobileSidebar" class="fixed inset-0 z-40 md:hidden hidden">
+  <div class="absolute inset-0 bg-black/40" onclick="toggleMobileSidebar()"></div>
+  <div class="absolute left-0 top-0 bottom-0 w-64 bg-[#004080] text-white p-6">
+    <div class="flex items-center space-x-3 mb-6">
+      <div class="w-10 h-10 bg-white rounded flex items-center justify-center text-[#004080] font-bold">AR</div>
+      <div>
+        <div class="text-lg font-semibold">ARCON</div>
+      </div>
+    </div>
+    <nav>
+      <a href="{% url 'dashboard' %}" class="block px-2 py-2 rounded hover:bg-white/10">Dashboard</a>
+      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Courses</a>
+      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Materials</a>
+      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Calendar</a>
+      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Exams</a>
+      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Certification</a>
+      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Renewal</a>
+    </nav>
+  </div>
+</div>

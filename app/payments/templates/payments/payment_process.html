@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto">
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
+                <h1 class="text-2xl font-bold text-white">Proceso de Certificación</h1>
+                <p class="text-blue-100 mt-1">Complete su pago para obtener su certificado</p>
+            </div>
+
+            <!-- Contenido -->
+            <div class="p-6 space-y-6">
+                <!-- Resumen del Pago -->
+                <div class="flex justify-between items-center bg-gray-50 p-4 rounded-lg">
+                    <div>
+                        <p class="text-gray-600">Monto a pagar</p>
+                        <p class="text-3xl font-bold text-gray-900">${{ payment.amount }}</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="px-3 py-1 text-sm rounded-full 
+                        {% if payment.status == 'pending' %}bg-yellow-100 text-yellow-800
+                        {% elif payment.status == 'completed' %}bg-green-100 text-green-800
+                        {% else %}bg-red-100 text-red-800{% endif %}">
+                            {{ payment.get_status_display }}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Detalles -->
+                <div class="border-t pt-6">
+                    <h3 class="text-lg font-semibold mb-4">Beneficios incluidos:</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-700">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Certificación profesional oficial
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Validez por 1 año
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Certificado digital descargable
+                        </li>
+                    </ul>
+                </div>
+
+                {% if payment.status == 'pending' %}
+                    <div class="border-t pt-6">
+                        <form method="post" class="space-y-6">
+                            {% csrf_token %}
+                            
+                            <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <svg class="h-5 w-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm text-blue-700">
+                                            Este es un sistema de demostración. El pago será simulado sin procesar información real.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-end space-x-4">
+                                <a href="{% url 'dashboard' %}" 
+                                   class="inline-flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                    Volver al Dashboard
+                                </a>
+                                <button type="submit" 
+                                        class="inline-flex justify-center items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                    </svg>
+                                    Realizar Pago
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                {% else %}
+                    <div class="border-t pt-6">
+                        <div class="{% if payment.status == 'completed' %}bg-green-50 border-green-200{% else %}bg-red-50 border-red-200{% endif %} border rounded-md p-4">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    {% if payment.status == 'completed' %}
+                                        <svg class="h-5 w-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    {% else %}
+                                        <svg class="h-5 w-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    {% endif %}
+                                </div>
+                                <div class="ml-3">
+                                    <h3 class="text-sm font-medium {% if payment.status == 'completed' %}text-green-800{% else %}text-red-800{% endif %}">
+                                        {{ payment.get_status_display }}
+                                    </h3>
+                                    {% if payment.transaction_id %}
+                                        <div class="mt-2 text-sm {% if payment.status == 'completed' %}text-green-700{% else %}text-red-700{% endif %}">
+                                            <p>ID de transacción: {{ payment.transaction_id }}</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if payment.status == 'completed' and request.user.architect.status == 'certified' %}
+                            <div class="mt-6 text-center">
+                                <a href="{% url 'architects:generate_certificate' %}" 
+                                   class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700">
+                                    <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Descargar Certificado
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

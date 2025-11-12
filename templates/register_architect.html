@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro profesional - ARCON{% endblock %}
+
+{% block content %}
+    <div class="bg-white rounded-lg shadow p-6 max-w-2xl mx-auto">
+        <h2 class="text-xl font-semibold text-[#004080] mb-4">{% if edit %}Editar registro{% else %}Registro profesional{% endif %}</h2>
+        <form method="post" enctype="multipart/form-data" class="space-y-4">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div>
+                {{ form.full_name.label_tag }}
+                {{ form.full_name }}
+                {{ form.full_name.errors }}
+            </div>
+            <div>
+                {{ form.registration_number.label_tag }}
+                {{ form.registration_number }}
+                {{ form.registration_number.errors }}
+            </div>
+            <div>
+                {{ form.qualification.label_tag }}
+                {{ form.qualification }}
+                {{ form.qualification.errors }}
+            </div>
+            <div>
+                {{ form.institution.label_tag }}
+                {{ form.institution }}
+                {{ form.institution.errors }}
+            </div>
+            <div>
+                {{ form.graduation_year.label_tag }}
+                {{ form.graduation_year }}
+                {{ form.graduation_year.errors }}
+            </div>
+            <div>
+                {{ form.document.label_tag }}
+                {{ form.document }}
+                {{ form.document.errors }}
+            </div>
+
+            <div class="flex items-center space-x-3 mt-4">
+                <button class="bg-[#004080] text-white px-4 py-2 rounded-full" type="submit">Guardar</button>
+                <a class="text-gray-600" href="{% url 'dashboard' %}">Cancelar</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+h2 {
+  color: #004080;
+}
+
+/* Diseño institucional simple: tarjetas, botones azules, formularios centrados */
+.container {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.centered-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 1.5rem;
+  text-align: left;
+}
+.form-card .form-group { margin-bottom: 0.75rem; }
+.form-card input[type="text"],
+.form-card input[type="number"],
+.form-card input[type="file"],
+.form-card textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+.btn {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary { background-color: #0d6efd; }
+.btn-secondary { background-color: #6c757d; }
+.action-card { margin-top: 1rem; padding: 1rem; }
+.status { padding: 1rem; border-radius: 6px; color: #fff; margin-top: 1rem; text-align: center }
+.status-review { background: #f6c756; color: #1f2937 }
+.status-approved { background: #28a745 }
+.status-rejected { background: #dc3545 }
+.card { margin: 1rem 0 }
+.form-actions { margin-top: 1rem }
+
+/* Encabezado institucional */
+header {
+  background: #0d6efd;
+  color: #fff;
+  padding: 1rem 0.5rem;
+}
+header h1 { margin: 0; font-size: 1.2rem; display: inline-block; margin-left: 0.5rem }
+header nav { float: right; margin-right: 1rem }
+header a { color: #fff; margin-left: 0.5rem }
+
+footer { background: #f1f3f5; padding: 0.5rem; margin-top: 2rem }

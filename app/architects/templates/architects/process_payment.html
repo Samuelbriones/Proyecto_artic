@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Procesar Pago</h1>
+    
+    <div class="bg-white shadow rounded-lg p-6">
+        <div class="mb-6">
+            <h2 class="text-xl font-semibold mb-4">Detalles del Pago</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <p class="font-medium">Monto:</p>
+                    <p>${{ payment.amount }}</p>
+                </div>
+                <div>
+                    <p class="font-medium">Descripción:</p>
+                    <p>{{ payment.description }}</p>
+                </div>
+            </div>
+        </div>
+
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+            
+            <!-- Aquí iría la integración con el sistema de pagos -->
+            <div class="bg-yellow-50 border border-yellow-200 rounded p-4 mb-4">
+                <p class="text-yellow-800">
+                    Este es un formulario de demostración. En producción, aquí se integraría
+                    el sistema de pagos real.
+                </p>
+            </div>
+
+            <div class="flex justify-end space-x-4">
+                <a href="{% url 'dashboard' %}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                    Cancelar
+                </a>
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                    Confirmar Pago
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
