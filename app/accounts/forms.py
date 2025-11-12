@@ -2,12 +2,21 @@ from django import forms
 from django.contrib.auth.models import User
 
 class UserRegisterForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'w-full border rounded px-3 py-2'}))
-    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'w-full border rounded px-3 py-2'}))
+    password = forms.CharField(
+        label='Contraseña',
+        widget=forms.PasswordInput(attrs={'class':'w-full border rounded px-3 py-2'})
+    )
+    confirm_password = forms.CharField(
+        label='Confirmar contraseña',
+        widget=forms.PasswordInput(attrs={'class':'w-full border rounded px-3 py-2'})
+    )
 
     class Meta:
         model = User
         fields = ['email', 'password', 'confirm_password']
+        labels = {
+            'email': 'Correo electrónico',
+        }
         widgets = {
             'email': forms.EmailInput(attrs={'class':'w-full border rounded px-3 py-2'}),
         }

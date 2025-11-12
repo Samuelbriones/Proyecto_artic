@@ -4,12 +4,12 @@
     <div class="w-10 h-10 bg-white rounded flex items-center justify-center text-[#004080] font-bold">AR</div>
     <div>
       <div class="text-lg font-semibold">ARCON</div>
-      <div class="text-sm opacity-80">Architect Registration</div>
+      <div class="text-sm opacity-80">Registro de Arquitectos</div>
     </div>
   </div>
   <nav class="mt-6 px-2">
     <a href="{% url 'dashboard' %}" class="block px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/dashboard/' %}bg-white/10{% endif %}">
-      Dashboard
+      Panel Principal
     </a>
     
     <a href="{% url 'architects:architect_register' %}" class="block px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/architects/register/' %}bg-white/10{% endif %}">
@@ -50,12 +50,6 @@
       {% endif %}
     </a>
     {% endif %}
-
-    {% if request.user.architect.status == 'certified' %}
-    <a href="{% url 'architects:generate_certificate' %}" class="block px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/architects/certificate/' %}bg-white/10{% endif %}">
-      Descargar Certificado
-    </a>
-    {% endif %}
     {% endif %}
   </nav>
 </aside>
@@ -71,13 +65,13 @@
       </div>
     </div>
     <nav>
-      <a href="{% url 'dashboard' %}" class="block px-2 py-2 rounded hover:bg-white/10">Dashboard</a>
-      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Courses</a>
-      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Materials</a>
-      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Calendar</a>
-      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Exams</a>
-      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Certification</a>
-      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Renewal</a>
+      <a href="{% url 'dashboard' %}" class="block px-2 py-2 rounded hover:bg-white/10">Panel Principal</a>
+      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Cursos</a>
+      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Materiales</a>
+      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Calendario</a>
+      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Exámenes</a>
+      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Certificación</a>
+      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Renovación</a>
     </nav>
   </div>
 </div>

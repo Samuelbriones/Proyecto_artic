@@ -14,6 +14,14 @@ class ArchitectForm(forms.ModelForm):
             'graduation_year',
             'document',
         ]
+        labels = {
+            'full_name': 'Nombre completo',
+            'registration_number': 'Número de registro',
+            'qualification': 'Título profesional',
+            'institution': 'Institución de egreso',
+            'graduation_year': 'Año de graduación',
+            'document': 'Documento PDF',
+        }
         widgets = {
             'graduation_year': forms.NumberInput(attrs={'min': 1900, 'max': datetime.now().year, 'class':'w-full border rounded px-3 py-2'}),
             'full_name': forms.TextInput(attrs={'class':'w-full border rounded px-3 py-2'}),
@@ -55,6 +63,10 @@ class ApplicationReviewForm(forms.ModelForm):
     class Meta:
         model = ApplicationReview
         fields = ['status', 'comments']
+        labels = {
+            'status': 'Estado de la revisión',
+            'comments': 'Comentarios',
+        }
         widgets = {
             'status': forms.Select(attrs={'class': 'w-full border rounded px-3 py-2'}),
             'comments': forms.Textarea(attrs={'class': 'w-full border rounded px-3 py-2', 'rows': 4}),
