@@ -7,21 +7,21 @@
       <div class="text-sm opacity-80">Registro de Arquitectos</div>
     </div>
   </div>
-  <nav class="mt-6 px-2">
-    <a href="{% url 'dashboard' %}" class="block px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/dashboard/' %}bg-white/10{% endif %}">
+  <nav class="mt-6 px-2 flex flex-col items-center space-y-3">
+    <a href="{% url 'dashboard' %}" class="block w-11/12 text-center px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/dashboard/' %}bg-white/10{% endif %}">
       Panel Principal
     </a>
     
-    <a href="{% url 'architects:architect_register' %}" class="block px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/architects/register/' %}bg-white/10{% endif %}">
+    <a href="{% url 'architects:architect_register' %}" class="block w-11/12 text-center px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/architects/register/' %}bg-white/10{% endif %}">
       Registro de Arquitecto
     </a>
 
     {% if request.user.architect %}
-    <a href="{% url 'architects:architect_edit' %}" class="block px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/architects/edit/' %}bg-white/10{% endif %}">
+    <a href="{% url 'architects:architect_edit' %}" class="block w-11/12 text-center px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/architects/edit/' %}bg-white/10{% endif %}">
       Editar Perfil
     </a>
 
-    <a href="{% url 'notifications:list' %}" class="block px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/notifications/' %}bg-white/10{% endif %}">
+    <a href="{% url 'notifications:list' %}" class="block w-11/12 text-center px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/notifications/' %}bg-white/10{% endif %}">
       Notificaciones
       {% if unread_notifications_count %}
         <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full ml-2">{{ unread_notifications_count }}</span>
@@ -30,7 +30,7 @@
 
     {% if request.user.architect.status == 'pending_payment' and pending_payment %}
     <a href="{% url 'payments:process' pending_payment.id %}" 
-       class="relative block px-4 py-2 rounded text-yellow-300 hover:bg-yellow-900/50 {% if request.path == '/payments/' %}bg-yellow-900/50{% endif %}">
+       class="relative block w-11/12 text-center px-4 py-2 rounded text-yellow-300 hover:bg-yellow-900/50 {% if request.path == '/payments/' %}bg-yellow-900/50{% endif %}">
       <div class="flex items-center">
         <span class="flex-grow">Realizar Pago Pendiente</span>
         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
@@ -41,7 +41,7 @@
     </a>
     {% else %}
     <a href="{% url 'payments:list' %}" 
-       class="block px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/payments/' %}bg-white/10{% endif %}">
+       class="block w-11/12 text-center px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/payments/' %}bg-white/10{% endif %}">
       Pagos
       {% if request.user.architect.status == 'pending_payment' %}
       <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 ml-2">
@@ -51,6 +51,22 @@
     </a>
     {% endif %}
     {% endif %}
+    <a href="{% url 'dashboard_calendar' %}" class="block w-11/12 text-center px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/dashboard/calendar/' %}bg-white/10{% endif %}">
+      Calendario
+        <span class=" text-white text-xs px-2 py-1 rounded-full ml-2"> </span>
+    </a>
+    <a href="{% url 'dashboard_exams' %}" class="block w-11/12 text-center px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/dashboard/exams/' %}bg-white/10{% endif %}">
+      Exámenes
+        <span class=" text-white text-xs px-2 py-1 rounded-full ml-2"> </span>
+    </a>
+    <a href="{% url 'dashboard_materials' %}" class="block w-11/12 text-center px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/dashboard/materials/' %}bg-white/10{% endif %}">
+      Materiales
+        <span class=" text-white text-xs px-2 py-1 rounded-full ml-2"> </span>
+    </a>
+    <a href="{% url 'dashboard_courses' %}" class="block w-11/12 text-center px-4 py-2 rounded hover:bg-white/10 {% if request.path == '/dashboard/courses/' %}bg-white/10{% endif %}">
+      Cursos
+        <span class=" text-white text-xs px-2 py-1 rounded-full ml-2"> </span>
+    </a>
   </nav>
 </aside>
 
@@ -66,12 +82,12 @@
     </div>
     <nav>
       <a href="{% url 'dashboard' %}" class="block px-2 py-2 rounded hover:bg-white/10">Panel Principal</a>
-      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Cursos</a>
-      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Materiales</a>
-      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Calendario</a>
-      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Exámenes</a>
-      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Certificación</a>
-      <a href="#" class="block px-2 py-2 rounded hover:bg-white/10">Renovación</a>
+      <a href="{% url 'dashboard_courses' %}" class="block px-2 py-2 rounded hover:bg-white/10">Cursos</a>
+      <a href="{% url 'dashboard_materials' %}" class="block px-2 py-2 rounded hover:bg-white/10">Materiales</a>
+      <a href="{% url 'dashboard_calendar' %}" class="block px-2 py-2 rounded hover:bg-white/10">Calendario</a>
+      <a href="{% url 'dashboard_exams' %}" class="block px-2 py-2 rounded hover:bg-white/10">Exámenes</a>
+      <a href="{% url 'payments:list' %}" class="block px-2 py-2 rounded hover:bg-white/10">Certificación</a>
+      <a href="{% url 'payments:list' %}" class="block px-2 py-2 rounded hover:bg-white/10">Renovación</a>
     </nav>
   </div>
 </div>

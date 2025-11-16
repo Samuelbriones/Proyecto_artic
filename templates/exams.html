@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}Exámenes - ARCON{% endblock %}
+
+{% block content %}
+  <div class="max-w-4xl mx-auto mt-6">
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="bg-blue-600 text-white text-center py-3 rounded-t-lg font-semibold">Examen APCE</div>
+      <div class="p-6">
+        <p class="text-gray-700">Resultados de ejemplo para la evaluación APCE. Datos estáticos.</p>
+
+        <div class="mt-4 bg-gray-50 rounded-lg p-4">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-sm font-medium">Prueba 1:</div>
+                <div class="text-green-600 font-semibold">Aprobado - (Puntuación: 70/100)</div>
+              </div>
+              <button class="bg-green-500 text-white text-sm px-4 py-2 rounded">DESCARGAR</button>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-sm font-medium">Prueba 2:</div>
+                <div class="text-green-600 font-semibold">Aprobado - (Puntuación: 80/100)</div>
+              </div>
+              <button class="bg-green-500 text-white text-sm px-4 py-2 rounded">DESCARGAR</button>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-sm font-medium">Prueba 3:</div>
+                <div class="text-green-600 font-semibold">Aprobado - (Puntuación: 65/100)</div>
+              </div>
+              <button class="bg-green-500 text-white text-sm px-4 py-2 rounded">DESCARGAR</button>
+            </div>
+          </div>
+
+            <div class="mt-6 text-center">
+            <button class="bg-green-500 text-white px-6 py-2 rounded-full font-semibold">Continuar</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div class="bg-white rounded-lg shadow p-4">
+            <div class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">EVENTOS PRÓXIMOS</div>
+            <div class="mt-4 text-sm text-gray-600">
+              <ul class="space-y-2">
+                <li><strong>AGM</strong> - 30 de julio, 2025</li>
+                <li><strong>Conferencia anual</strong> - 5 de agosto, 2025</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow p-4">
+            <div class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">EXÁMENES PRÓXIMOS</div>
+            <div class="mt-4 text-sm text-gray-600">
+              <ul class="space-y-2">
+                <li><strong>Examen ARP</strong> - 24-30 de julio, 2025</li>
+                <li><strong>Examen APCE</strong> - 6-10 de agosto, 2025</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
